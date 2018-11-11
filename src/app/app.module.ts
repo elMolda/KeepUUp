@@ -11,6 +11,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { DetailsPage } from '../pages/details/details';
 import { NewSubjectModalPage } from '../pages/new-subject-modal/new-subject-modal';
 import { NewActivityModalPage } from '../pages/new-activity-modal/new-activity-modal';
+import { SchedulePage } from '../pages/schedule/schedule';
 
 import { FirebaseService } from '../pages/services/firebase.service';
 import { AuthService } from '../pages/services/auth.service';
@@ -21,6 +22,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environment/environment';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,9 +32,11 @@ import { environment } from '../environment/environment';
     MenuPage,
     NewSubjectModalPage,
     DetailsPage,
-    NewActivityModalPage
+    NewActivityModalPage,
+    SchedulePage,
   ],
   imports: [
+    NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
@@ -47,7 +52,8 @@ import { environment } from '../environment/environment';
     MenuPage,
     NewSubjectModalPage,
     DetailsPage,
-    NewActivityModalPage
+    NewActivityModalPage,
+    SchedulePage,
   ],
   providers: [
     StatusBar,
