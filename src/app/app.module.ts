@@ -12,6 +12,7 @@ import { DetailsPage } from '../pages/details/details';
 import { NewSubjectModalPage } from '../pages/new-subject-modal/new-subject-modal';
 import { NewActivityModalPage } from '../pages/new-activity-modal/new-activity-modal';
 import { SchedulePage } from '../pages/schedule/schedule';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 import { FirebaseService } from '../pages/services/firebase.service';
 import { AuthService } from '../pages/services/auth.service';
@@ -34,6 +35,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     DetailsPage,
     NewActivityModalPage,
     SchedulePage,
+    CalendarPage,
   ],
   imports: [
     NgCalendarModule,
@@ -54,6 +56,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     DetailsPage,
     NewActivityModalPage,
     SchedulePage,
+    CalendarPage,
   ],
   providers: [
     StatusBar,

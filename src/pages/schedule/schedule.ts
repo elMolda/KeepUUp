@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseService } from '../services/firebase.service';
 
 /**
  * Generated class for the SchedulePage page.
@@ -15,37 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SchedulePage {
 
-  eventSource = [];
-  selectedDay = new Date();
-  calendar = {
-    mode: 'week',
-    currentDate: this.selectedDay,
-  }
+  items: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private firebaseService: FirebaseService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SchedulePage');
+    this.getData();
   }
 
-  onCurrentDateChanged(event) {
-
-  }
-
-  reloadSource(startTime, endTime) {
-
-  }
-
-  onEventSelected(event) {
-
-  }
-
-  onViewTitleChanged(event) {
-
-  }
-
-  onTimeSelected(event) {
-
+  getData(){
+    this.firebaseService.getSubjects()
+    .then(tasks => {
+      this.items = tasks;
+    })
   }
 }
