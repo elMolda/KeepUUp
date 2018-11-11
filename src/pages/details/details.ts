@@ -13,6 +13,7 @@ export class DetailsPage {
   validations_form: FormGroup;
   item: any;
   loading: any;
+  acts: Array<any>;
 
   constructor(
     private modalCtrl: ModalController,
@@ -32,6 +33,9 @@ export class DetailsPage {
 
   getData(){
     this.item = this.navParams.get('data');
+    this.firebaseService.getActivities(this.item.id).then(tasks => {
+      this.acts = tasks;
+    }),
     this.validations_form = this.formBuilder.group({
     name: new FormControl('', Validators.required),
     credits: new FormControl('', Validators.required),

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>
-      Detalle
+    <ion-title >
+      {{item.name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -24,6 +24,17 @@
     <button class="form-action-button" ion-button block type="submit" [disabled]="!validations_form.valid">Guardar</button>
   </form>
   <button class="form-action-button" ion-button block color="danger" (click)="delete()">Eliminar</button>
-  <button ion-button color="secondary"  full (click)="openNewActivityModal()">Añadir Actividad</button>
-
+  <ion-content class="list-mini-content">
+      <h1 text-center color="primary">Actividades</h1>
+    <div class="list-mini">
+      <ion-list>
+        <ion-item *ngFor="let act of acts">
+          <h2>{{act.payload.doc.data().name}}</h2>
+          <button ion-button clear item-end>Detalles</button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <button ion-button color="secondary"  full (click)="openNewActivityModal()">Añadir Actividad</button>
+  </ion-content>
+  
 </ion-content>
