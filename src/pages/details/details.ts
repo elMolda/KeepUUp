@@ -14,6 +14,8 @@ export class DetailsPage {
   item: any;
   loading: any;
   acts: Array<any>;
+  promedio: any;
+  nota: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -29,6 +31,7 @@ export class DetailsPage {
 
   ionViewWillLoad(){
     this.getData()
+    //this.getNota()
   }
 
   getData(){
@@ -43,6 +46,19 @@ export class DetailsPage {
     });
   }
 
+  getNota(){
+    this.promedio = 0;
+    this.nota = 0;
+    for(let act of this.acts){
+      this.promedio +=Number(act.payload.doc.data().value);
+      this.nota += ((Number(act.payload.doc.data().value)/100)*Number(act.payload.doc.data().score));
+      console.log(this.nota);
+    }
+    this.item.finalScore = this.nota;
+    this.item.percent = this.promedio;
+    this.onSubmit(this.item);
+  }
+
   dismiss() {
    this.viewCtrl.dismiss();
   }
@@ -51,7 +67,9 @@ export class DetailsPage {
     let data = {
       name: value.name,
       credits: Number(value.credits),
-      teacher: value.teacher
+      teacher: value.teacher,
+      finalScore: this.item.finalScore,
+      percent: this.item.percent
     }
     this.firebaseService.updateSubject(this.item.id,data)
     .then(
@@ -86,10 +104,10 @@ export class DetailsPage {
   }
 
   openNewActivityModal(){
-    let modal = this.modalCtrl.create(NewActivityModalPage, { id: this.item.id });
+    let modal = this.modalCtrl.create(NewActivityModalPage, { id: this.item.id, name:this.item.name, teacher:this.item.teacher, credits:this.item.credits});
     modal.onDidDismiss(data => {
       this.getData();
     });
     modal.present();
-  }
+    }
 }

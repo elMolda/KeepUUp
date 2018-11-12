@@ -13,6 +13,9 @@ export class NewActivityModalPage {
   validations_form: FormGroup;
   loading: any;
   item: any;
+  acts: Array<any>;
+  promedio: any;
+  nota: any;
 
   constructor(
     private viewCtrl: ViewController,
@@ -22,8 +25,19 @@ export class NewActivityModalPage {
     ) {
       this.loading = this.loadingCtrl.create();
       this.item = viewCtrl.data;
+      this.getData();
   }
 
+  getData(){
+    this.firebaseService.getActivities(this.item.id).then(tasks => {
+      this.acts = tasks;
+    }),
+    this.validations_form = this.formBuilder.group({
+    name: new FormControl('', Validators.required),
+    credits: new FormControl('', Validators.required),
+    teacher: new FormControl('', Validators.required)
+    });
+  }
   ionViewWillLoad(){
     this.resetFields()
   }
@@ -48,13 +62,40 @@ export class NewActivityModalPage {
       date: new Date(value.date),
       score: Number(value.score)
     }
-    this.firebaseService.createActivity(data,this.item.id)
-    .then(
-      res => {
-        this.resetFields();
-        this.viewCtrl.dismiss();
+    this.promedio = data.value;
+    this.nota = (data.value/100)*data.score;
+    for(let act of this.acts){
+      this.promedio +=Number(act.payload.doc.data().value);
+      this.nota += ((Number(act.payload.doc.data().value)/100)*Number(act.payload.doc.data().score));
+      console.log(this.nota);
+    }
+    if(this.promedio<=100){
+
+      console.log(this.item.teacher);
+      let data1 = {
+        credits: this.item.credits,
+        finalScore: this.nota,
+        name: this.item.name,
+        percent: this.promedio,
+        teacher: this.item.teacher
+
       }
-    )
+      this.firebaseService.updateSubject(this.item.id,data1)
+      .then(
+      )
+
+      this.firebaseService.createActivity(data,this.item.id)
+      .then(
+        res => {
+          this.resetFields();
+          this.viewCtrl.dismiss();
+        }
+      )
+      this.item.finalScore = this.nota;
+      this.item.percent = this.promedio;
+    }else{
+      console.log('La suma de los porcentaje es superior al 100%');
+    }
   }
 
 

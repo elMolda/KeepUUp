@@ -3,7 +3,6 @@ import 'rxjs/add/operator/toPromise';
 import { AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import { dateDataSortValue } from "ionic-angular/umd/util/datetime-util";
 
 @Injectable()
 export class FirebaseService {
@@ -64,20 +63,21 @@ export class FirebaseService {
         credits: Number(value.credits),
         teacher: value.teacher,
         days: String(value.days),
-        finalScore: 0
+        finalScore: 0,
+        percent:0
 
       })
       .then(
         res => resolve(res),
         err => reject(err)
       )
-      this.afs.collection('users').doc(currentUser.uid).set({
+      /*this.afs.collection('users').doc(currentUser.uid).set({
         credits:20
       })
       .then(
         res => resolve(res),
         err => reject(err)
-      )
+      )*/
     })
   }
   //-----------------------------------------------------------------FIN-CRUD-ASIGNATURAS-------------------------------------------------------------------------------------
@@ -86,17 +86,18 @@ export class FirebaseService {
   createActivity(value,subjectKey){//Crear una actividad, a la asignatura con id dado
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
-      this.afs.collection('users').doc(currentUser.uid).collection('subjects').doc(subjectKey).collection('activities').add({
-        name: value.name,
-        value: value.value,
-        date: value.date,
-        score: value.score
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
+        this.afs.collection('users').doc(currentUser.uid).collection('subjects').doc(subjectKey).collection('activities').add({
+          name: value.name,
+          value: value.value,
+          date: value.date,
+          score: value.score
+        })
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        )
     })
+    
   }
 
   deleteActivity(subjectKey,activityKey){//Eliminar la actividad con id dado de la asignatura con id dado
