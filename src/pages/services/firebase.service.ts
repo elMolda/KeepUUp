@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import 'rxjs/add/operator/toPromise';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import { dateDataSortValue } from "ionic-angular/umd/util/datetime-util";
@@ -82,7 +82,35 @@ export class FirebaseService {
   }
   //-----------------------------------------------------------------FIN-CRUD-ASIGNATURAS-------------------------------------------------------------------------------------
 
+  createEvent(value){//Crear un evento
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      this.afs.collection('users').doc(currentUser.uid).collection('events').add({
+        title: value.title,
+        subject: value.subject,
+        description: value.description,
+        startTime: value.startTime,
+        endTime: value.endTime,
+      })
+      .then(
+        res => resolve(res),
+        err => reject(err)
+      )
+    })
+  }
+
+  getEvents(){//Lista todos los eventos del estudiante que esta loggeado
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      this.snapshotChangesSubscription = this.afs.collection('users').doc(currentUser.uid).collection('events').snapshotChanges()
+      .subscribe(snapshots => {
+        resolve(snapshots);
+      })
+    });
+  }
+
   //---------------------------------------------------------------------CRUD-ACTIVIDADES-------------------------------------------------------------------------------------
+
   createActivity(value,subjectKey){//Crear una actividad, a la asignatura con id dado
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
@@ -132,3 +160,7 @@ export class FirebaseService {
   }
 
 }
+
+//-----------------------------------------------------------------FIN-CRUD-ASIGNATURAS-------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------CRUD-ACTIVIDADES-------------------------------------------------------------------------------------

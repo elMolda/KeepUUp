@@ -1,0 +1,8 @@
+export interface Subject {
+    id: string;
+    name: string;
+    credits: number;
+    teacher: string;
+    days: string;
+    activities: Array<any>;
+}

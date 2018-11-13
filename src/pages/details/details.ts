@@ -86,7 +86,7 @@ export class DetailsPage {
   }
 
   openNewActivityModal(){
-    let modal = this.modalCtrl.create(NewActivityModalPage, { id: this.item.id });
+    let modal = this.modalCtrl.create(NewActivityModalPage, { id: this.item.id, name: this.item.name });
     modal.onDidDismiss(data => {
       this.getData();
     });

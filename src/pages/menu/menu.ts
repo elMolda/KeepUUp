@@ -5,6 +5,8 @@ import { FirebaseService } from '../services/firebase.service';
 import { NewSubjectModalPage } from '../new-subject-modal/new-subject-modal';
 import { DetailsPage } from '../details/details';
 import { LoginPage } from '../login/login';
+import { SchedulePage } from '../schedule/schedule';
+import { CalendarPage } from '../calendar/calendar';
 
 
 @Component({
@@ -53,6 +55,18 @@ export class MenuPage {
       this.getData();
     });
     modal.present();
+  }
+
+  openScheduleModal(){
+    this.navCtrl.push(SchedulePage, {
+      
+    });
+  }
+
+  openCalendarModal(){
+    this.navCtrl.push(CalendarPage, {
+      
+    });
   }
 
   logout(){

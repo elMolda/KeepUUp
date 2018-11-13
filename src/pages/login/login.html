@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar [hideBackButton]="true" color="primary">
+  <ion-navbar [hideBackButton]="true" color="secondary">
     <ion-title>Iniciar Sesión</ion-title>
   </ion-navbar>
 </ion-header>
@@ -31,7 +31,7 @@
       </ng-container>
     </div>
 
-    <button class="submit-btn" ion-button block type="submit" [disabled]="!validations_form.valid">Iniciar Sesión</button>
+    <button color="secondary" class="submit-btn" ion-button block type="submit" [disabled]="!validations_form.valid">Iniciar Sesión</button>
     <label class="error-message">{{errorMessage}}</label>
   </form>
   <p class="go-to-register">
