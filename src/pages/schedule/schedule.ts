@@ -24,6 +24,7 @@ export class SchedulePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SchedulePage');
     this.getData();
+    this.orderByDay();
   }
 
   getData(){
@@ -31,5 +32,11 @@ export class SchedulePage {
     .then(tasks => {
       this.items = tasks;
     })
+  }
+
+  orderByDay() {
+    for (let item in this.items) {
+      console.log(item);
+    }
   }
 }
