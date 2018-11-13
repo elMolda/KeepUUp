@@ -45,11 +45,11 @@
     <ion-list>
       <ion-item *ngFor="let item of items">
         <div class="card-body">
-            <p class="card-text">Asignatura: {{item.payload.doc.data().name}}</p>
-            <p class="card-text">Creditos: {{item.payload.doc.data().credits}}</p>
-            <p class="card-text">Día: {{item.payload.doc.data().days}}</p>
-            <p class="card-text">Maestro: {{item.payload.doc.data().teacher}}</p>
-            <p class="card-text">Actividades: {{item.payload.doc.data().activities}}</p>
+          <p class="card-text">Title: {{item.payload.doc.data().title}}</p>
+          <p class="card-text">Subject: {{item.payload.doc.data().subject}}</p>
+          <p class="card-text">Description: {{item.payload.doc.data().description}}</p>
+          <p class="card-text">StartTime: {{item.payload.doc.data().startTime}}</p>
+          <p class="card-text">EndTime: {{item.payload.doc.data().endTime}}</p>
         </div>
       </ion-item>
     </ion-list>

@@ -19,12 +19,13 @@ import * as moment from 'moment';
 export class CalendarPage {
   items: Array<any>;
   eventSource = [];
+  acts: Array<any>;
   viewTitle: string;
   selectedDay = new Date();
   calendarModes = [
-    { key: 'month', value: 'Month' },
-    { key: 'week', value: 'Week' },
-    { key: 'day', value: 'Day' },
+    { key: 'month', value: 'Mes' },
+    { key: 'week', value: 'Semana' },
+    { key: 'day', value: 'Día' },
   ]
   calendar = {
     mode: this.calendarModes[1].key,
@@ -39,7 +40,7 @@ export class CalendarPage {
   }
 
   getData(){
-    this.firebaseService.getSubjects()
+    this.firebaseService.getEvents()
     .then(tasks => {
       this.items = tasks;
     })

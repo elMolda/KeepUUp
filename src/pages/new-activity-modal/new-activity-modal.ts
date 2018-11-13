@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-new-activity-modal',
@@ -48,6 +48,13 @@ export class NewActivityModalPage {
       date: new Date(value.date),
       score: Number(value.score)
     }
+    let eventData = {
+      title: value.name,
+      subject: this.item.name,
+      description: value.name + ' - ' + this.item.name,
+      startTime: new Date(value.date).toISOString(),
+      endTime: new Date(value.date).toISOString()
+    }
     this.firebaseService.createActivity(data,this.item.id)
     .then(
       res => {
@@ -55,6 +62,7 @@ export class NewActivityModalPage {
         this.viewCtrl.dismiss();
       }
     )
+    this.firebaseService.createEvent(eventData)
   }
 
 
