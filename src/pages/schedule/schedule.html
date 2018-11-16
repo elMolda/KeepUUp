@@ -13,26 +13,82 @@
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row style="background-color: secondary">
-      <ion-col>
-        Lunes
-      </ion-col>
-      <ion-col>
-        Martes
-      </ion-col>
-      <ion-col>
-        Miércoles
-      </ion-col>
-      <ion-col>
-        Jueves
-      </ion-col>
-      <ion-col>
-        Viernes
-      </ion-col>
-      <ion-col>
-        Sábado
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <h2>Lunes</h2>
+  <ion-item>
+    <ion-list *ngIf="lunes">
+      <ion-item *ngFor="let lun of lunes" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <h2>Martes</h2>
+  <ion-item>
+    <ion-list *ngIf="martes">
+      <ion-item *ngFor="let lun of martes" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <h2>Miércoles</h2>
+  <ion-item>
+    <ion-list *ngIf="miercoles">
+      <ion-item *ngFor="let lun of miercoles" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <h2>Jueves</h2>
+  <ion-item>
+    <ion-list *ngIf="jueves">
+      <ion-item *ngFor="let lun of jueves" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <h2>Viernes</h2>
+  <ion-item>
+    <ion-list *ngIf="viernes">
+      <ion-item *ngFor="let lun of viernes" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <h2>Sábado</h2>
+  <ion-item>
+    <ion-list *ngIf="sabado">
+      <ion-item *ngFor="let lun of sabado" >
+        <div class="card-body">
+          <p class="card-text">Nombre: {{lun.name}}</p>
+          <p class="card-text">Créditos: {{lun.credits}}</p>
+          <p class="card-text">Profesor: {{lun.teacher}}</p>
+          <p class="card-text">Horario: {{lun.days}} {{lun.hour}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-item>
 </ion-content>

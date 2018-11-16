@@ -23,6 +23,8 @@
               <p class="card-text">Asignatura: {{item.payload.doc.data().name}}</p>
               <p class="card-text">Creditos: {{item.payload.doc.data().credits}}</p>
               <p class="card-text">Maestro: {{item.payload.doc.data().teacher}}</p>
+              <p class="card-text">Necesita obtener {{(30-item.payload.doc.data().finalScore)/((100-item.payload.doc.data().percent)/100)}} en el {{100-item.payload.doc.data().percent}}% restante de la materia</p>
+              <p class="card-text">Nota Actual: {{item.payload.doc.data().finalScore}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <button ion-button clear item-end>Detalles</button>

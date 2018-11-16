@@ -7,6 +7,7 @@ import { DetailsPage } from '../details/details';
 import { LoginPage } from '../login/login';
 import { SchedulePage } from '../schedule/schedule';
 import { CalendarPage } from '../calendar/calendar';
+import { SubjectModalPage } from '../subject-modal/subject-modal';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class MenuPage {
   }
 
   openNewUserModal(){
-    let modal = this.modalCtrl.create(NewSubjectModalPage);
+    let modal = this.modalCtrl.create(SubjectModalPage);
     modal.onDidDismiss(data => {
       this.getData();
     });

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="secondary">
     <ion-title>Crear cuenta</ion-title>
   </ion-navbar>
 </ion-header>
@@ -8,7 +8,7 @@
   <form class="form" [formGroup]="validations_form"  (ngSubmit)="tryRegister(validations_form.value)">
 
     <ion-item>
-      <ion-label floating color="primary">Email</ion-label>
+      <ion-label floating color="secondary">Email</ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
     <div class="validation-errors">
@@ -20,7 +20,7 @@
     </div>
 
     <ion-item>
-      <ion-label floating color="primary">Contraseña</ion-label>
+      <ion-label floating color="secondary">Contraseña</ion-label>
       <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
     </ion-item>
     <div class="validation-errors">
@@ -31,7 +31,7 @@
       </ng-container>
     </div>
 
-    <button class="submit-btn" ion-button block type="submit" [disabled]="!validations_form.valid">Registrarse</button>
+    <button class="submit-btn" ion-button block type="submit" [disabled]="!validations_form.valid" color="secondary">Registrarse</button>
     <label class="error-message">{{errorMessage}}</label>
     <label class="success-message">{{successMessage}}</label>
   </form>

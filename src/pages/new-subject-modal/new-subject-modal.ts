@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, LoadingController } from 'ionic-angular';
+import { ViewController, LoadingController, DateTime } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 
@@ -12,6 +12,22 @@ export class NewSubjectModalPage {
 
   validations_form: FormGroup;
   loading: any;
+  subject_days = [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado"
+  ];
+
+  subject = {
+    name: "",
+    credits: 0,
+    teacher: "",
+    day: "",
+    hour: "",
+  };
 
   constructor(
     private viewCtrl: ViewController,
@@ -23,27 +39,44 @@ export class NewSubjectModalPage {
   }
 
   ionViewWillLoad(){
-    this.resetFields()
+    //this.resetFields()
   }
 
-  resetFields(){
+  /*resetFields(){
     this.validations_form = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       credits: new FormControl('', Validators.required),
       teacher: new FormControl('', Validators.required)
     });
-  }
+  }*/
 
   dismiss() {
    this.viewCtrl.dismiss();
   }
 
-  onSubmit(value){
+  save() {
+    let data = {
+      name: this.subject.name,
+      credits: Number(this.subject.credits),
+      teacher: this.subject.teacher,
+      days: this.subject.day,
+      hour: String(this.subject.hour)
+    }
+    this.firebaseService.createSubject(data)
+    .then(
+      res => {
+        //this.resetFields();
+        this.viewCtrl.dismiss(this.subject);
+      }
+    )
+  }
+
+  /*onSubmit(value){
     let data = {
       name: value.name,
       credits: Number(value.credits),
       teacher: value.teacher,
-      days: String(value.days)
+      days: this.subject.day
     }
     this.firebaseService.createSubject(data)
     .then(
@@ -52,6 +85,5 @@ export class NewSubjectModalPage {
         this.viewCtrl.dismiss();
       }
     )
-  }
-
+  }*/
 }

@@ -19,6 +19,7 @@ import * as moment from 'moment';
 export class CalendarPage {
   items: Array<any>;
   eventSource = [];
+  events;
   acts: Array<any>;
   viewTitle: string;
   selectedDay = new Date();
@@ -43,6 +44,21 @@ export class CalendarPage {
     this.firebaseService.getEvents()
     .then(tasks => {
       this.items = tasks;
+      for (let item of this.items) {
+        let eventData = {
+          title: item.payload.doc.data().title,
+          subject: item.payload.doc.data().subject,
+          description: item.payload.doc.data().description,
+          startTime: new Date(item.payload.doc.data().startTime),
+          endTime: new Date(item.payload.doc.data().endTime),
+        }
+        this.events = this.eventSource;
+          this.events.push(eventData);
+      }
+      this.eventSource = [];
+          setTimeout(() => {
+            this.eventSource = this.events;
+        });
     })
   }
 

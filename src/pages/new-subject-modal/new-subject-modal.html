@@ -13,7 +13,7 @@
 
 <ion-content padding>
 
-  <form class="new-user-form" [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+  <!--<form class="new-user-form" [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
     <ion-item>
       <ion-label floating color="primary">Nombre</ion-label>
       <ion-input type="text" formControlName="name" class="form-control" required></ion-input>
@@ -28,16 +28,35 @@
     </ion-item>
     <ion-item>
         <ion-label floating color="primary">Dias de la Semana</ion-label>
-        <ion-select multiple="true">
-          <ion-option value = "Lun">Lunes</ion-option>
-          <ion-option value = "Mar">Martes</ion-option>
-          <ion-option value = "Mie">Miercoles</ion-option>
-          <ion-option value = "Jue">Jueves</ion-option>
-          <ion-option value = "Vie">Viernes</ion-option>
-          <ion-option value = "Sab">Sabado</ion-option>
-          <ion-option value = "Dom">Domingo</ion-option>
+        <ion-select>
+          <ion-option *ngFor="let day of subject_days" [(ngModel)]="days.day">{{day}}</ion-option>
         </ion-select>
       </ion-item>
     <button class="form-action-button" ion-button block type="submit" [disabled]="!validations_form.valid">Crear</button>
-  </form>
+  </form>-->
+  <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Nombre" [(ngModel)]="subject.name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Créditos" [(ngModel)]="subject.credits" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Profesor" [(ngModel)]="subject.teacher" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="secondary">Dias de la Semana</ion-label>
+        <ion-select>
+          <ion-option *ngFor="let day of subject_days" [(ngModel)]="subject.day">{{day}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Horario</ion-label>
+        <ion-datetime displayFormat="hh:mm" [(ngModel)]="subject.hour"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <button ion-button full icon-left color="secondary" (click)="save()">
+      <ion-icon name="checkmark"></ion-icon>
+      Añadir materia
+    </button>
 </ion-content>

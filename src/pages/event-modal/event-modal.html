@@ -16,18 +16,18 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Título" [(ngModel)]="event.title"></ion-input>
+      <ion-input type="text" placeholder="Título" [(ngModel)]="event.title" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Descripción" [(ngModel)]="event.description"></ion-input>
+      <ion-input type="text" placeholder="Descripción" [(ngModel)]="event.description" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Inicio</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.startTime" [min]="minDate" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Fin</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.endTime" [min]="minDate" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Todo el día</ion-label>

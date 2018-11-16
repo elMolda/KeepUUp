@@ -64,20 +64,22 @@ export class FirebaseService {
         credits: Number(value.credits),
         teacher: value.teacher,
         days: String(value.days),
-        finalScore: 0
-
+        hour: String(value.hour),
+        finalScore: 0,
+        percent:0
+        
       })
       .then(
         res => resolve(res),
         err => reject(err)
       )
-      this.afs.collection('users').doc(currentUser.uid).set({
+      /*this.afs.collection('users').doc(currentUser.uid).set({
         credits:20
       })
       .then(
         res => resolve(res),
         err => reject(err)
-      )
+      )*/
     })
   }
   //-----------------------------------------------------------------FIN-CRUD-ASIGNATURAS-------------------------------------------------------------------------------------
@@ -114,16 +116,16 @@ export class FirebaseService {
   createActivity(value,subjectKey){//Crear una actividad, a la asignatura con id dado
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
-      this.afs.collection('users').doc(currentUser.uid).collection('subjects').doc(subjectKey).collection('activities').add({
-        name: value.name,
-        value: value.value,
-        date: value.date,
-        score: value.score
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
+        this.afs.collection('users').doc(currentUser.uid).collection('subjects').doc(subjectKey).collection('activities').add({
+          name: value.name,
+          value: value.value,
+          date: value.date,
+          score: value.score
+        })
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        )
     })
   }
 
